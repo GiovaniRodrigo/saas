@@ -1,59 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - Laravel Clean Architecture SaaS</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 2rem; }
+        h1, h2, h3 { color: #2c3e50; }
+        pre { background: #f4f4f4; padding: 1rem; border-radius: 5px; }
+        code { font-family: "Courier New", monospace; }
+        .section { margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+    <h1>Laravel Clean Architecture SaaS</h1>
+    <p>Template de projeto SaaS em Laravel baseado em Clean Architecture.</p>
 
-## About Laravel
+    <div class="section">
+        <h2>📦 Visão Geral</h2>
+        <p>Este projeto tem por objetivo fornecer uma base sólida para construir aplicações SaaS com Laravel utilizando princípios de Clean Architecture — separando camadas de domínio, aplicação, infraestrutura e apresentação para manter o código limpo, testável e escalável.</p>
+        <p>Clean Architecture promove a separação de responsabilidades e organização do projeto por camadas. :contentReference[oaicite:1]{index=1}</p>
+    </div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+    <div class="section">
+        <h2>🧠 Estrutura do Projeto</h2>
+        <ul>
+            <li><strong>app/Domain:</strong> Entidades e lógica central do negócio.</li>
+            <li><strong>app/Application:</strong> Casos de uso e serviços de aplicação.</li>
+            <li><strong>app/Infrastructure:</strong> Implementações de infraestrutura (banco de dados, serviços externos).</li>
+            <li><strong>app/Http:</strong> Controladores e lógica de rotas API/HTTP.</li>
+            <li><strong>tests/:</strong> Testes automatizados.</li>
+        </ul>
+    </div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    <div class="section">
+        <h2>⚙️ Pré-requisitos</h2>
+        <p>Antes de iniciar, tenha instalado:</p>
+        <ul>
+            <li>PHP >= 8.1+</li>
+            <li>Composer</li>
+            <li>Laravel (via Sail ou ambiente local)</li>
+            <li>Docker &amp; Docker Compose (opcional, recomendado)</li>
+        </ul>
+    </div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    <div class="section">
+        <h2>🚀 Instalação</h2>
+        <pre><code># Clone o repositório
+git clone https://github.com/GiovaniRodrigo/laravel-clean-architecture-saas.git
 
-## Learning Laravel
+# Entre no diretório
+cd laravel-clean-architecture-saas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+# Instale dependências
+composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Crie o arquivo de ambiente
+cp .env.example .env
 
-## Laravel Sponsors
+# Gere a chave de aplicação
+php artisan key:generate
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Inicie o servidor
+php artisan serve
+        </code></pre>
+    </div>
 
-### Premium Partners
+    <div class="section">
+        <h2>📦 Containers Docker (opcional)</h2>
+        <p>Se o projeto inclui <code>docker-compose.yml</code>, você pode subir os containers:</p>
+        <pre><code>docker-compose up -d
+docker-compose exec app bash
+composer install
+php artisan migrate
+php artisan serve --host=0.0.0.0
+        </code></pre>
+    </div>
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+    <div class="section">
+        <h2>🧪 Comandos Úteis</h2>
+        <ul>
+            <li><code>composer test</code> — rodar a suíte de testes.</li>
+            <li><code>php artisan migrate</code> — rodar migrações.</li>
+            <li><code>php artisan tinker</code> — ambiente interativo Laravel.</li>
+        </ul>
+    </div>
 
-## Contributing
+    <div class="section">
+        <h2>📑 Boas Práticas</h2>
+        <p>Recomendações para desenvolvimento:</p>
+        <ul>
+            <li>Separe claramente lógica de domínio da lógica de framework.</li>
+            <li>Escreva testes para casos de uso e integrações.</li>
+            <li>Utilize contratos/interfaces para dependências externas.</li>
+        </ul>
+    </div>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    <div class="section">
+        <h2>🧡 Contribuição</h2>
+        <p>Contribuições, sugestões e melhorias via Pull Request são bem-vindas!</p>
 
-## Code of Conduct
+    </div>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    <div class="section">
+        <h2>📄 Licença</h2>
+        <p>Projeto sob licença <strong>MIT</strong>.</p>
+    </div>
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+</body>
+</html>
