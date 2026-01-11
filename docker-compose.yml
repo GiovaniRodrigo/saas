@@ -1,0 +1,45 @@
+services:
+  app:
+    image: php:8.4.16-fpm-bookworm
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+    networks:
+          - default
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+     - ./:/var/www/html
+    depends_on:
+      - app
+    networks:
+          - default
+
+  db:
+    image: postgres:15.15
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=app_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+          - default
+
+networks:
+  default:
+    name: lcas_network
+    driver: bridge
+
+volumes:
+  db_data:
