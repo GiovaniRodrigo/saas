@@ -1,8 +1,8 @@
 # SAAS - Laravel Clean Architecture
 
-This project goes improve knowleadge in Development Paradigms, as Object Orientation, Design Pattern as Clean Code.
+This project aims to improve knowledge of development paradigms such as Object-Oriented Programming and design patterns, including Clean Code principles.
 
-Its a Software As A Service (SAAS), and a lot of ERP (Enterprise Resource Planing).
+It is a Software as a Service (SaaS) solution and covers many aspects of ERP (Enterprise Resource Planning) systems.
 
 ## Technologies
 - Laravel 12
