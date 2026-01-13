@@ -1,6 +1,7 @@
 services:
   app:
     image: php:8.4.16-fpm-bookworm
+    container_name: app
     build:
       context: .
       dockerfile: ./docker/Dockerfile
@@ -18,8 +19,6 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
-    volumes:
-     - ./:/var/www/html
     depends_on:
       - app
     networks:
