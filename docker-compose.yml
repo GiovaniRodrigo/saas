@@ -16,6 +16,13 @@ services:
       - APP_DEBUG=false
     networks:
       - default
+    command: >
+        sh -c "
+        composer install &&
+        php artisan migrate --force &&
+        php-fpm
+        "
+
 
   nginx:
     container_name: ${APP_NAME}-nginx
