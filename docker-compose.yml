@@ -1,44 +1,54 @@
 services:
   app:
+    container_name: ${APP_NAME}-app
     image: php:8.4.16-fpm-bookworm
-    container_name: app
     build:
       context: .
       dockerfile: ./docker/Dockerfile
+    depends_on:
+      - db
+    expose:
+      - 9000
+    volumes:
+      - ./:/var/www/html
     environment:
       - APP_ENV=production
       - APP_DEBUG=false
-    volumes:
-      - ./:/var/www/html
-    depends_on:
-      - db
     networks:
-          - default
+      - default
 
   nginx:
+    container_name: ${APP_NAME}-nginx
     image: nginx:latest
-    ports:
-      - "80:80"
     depends_on:
       - app
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/configs/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./:/var/www/html
     networks:
-          - default
+      - default
 
   db:
+    container_name: ${APP_NAME}-db
     image: postgres:15.15
+    ports:
+      - 5432:5432
+    volumes:
+      - saas_db:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=app_db
-    volumes:
-      - db_data:/var/lib/postgresql/data
     networks:
-          - default
+      - default
+
+volumes:
+  saas_db:
+
 
 networks:
   default:
     name: lcas_network
     driver: bridge
-
-volumes:
-  db_data:
